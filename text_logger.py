@@ -1,7 +1,10 @@
 from fastapi import FastAPI, HTTPException, status, Depends
 from sqlalchemy.orm import Session
+from transformers import pipeline 
 import models, schemas, crud
 from database import engine, get_db
+
+sentiment_classifier = pipeline("sentiment-analysis")
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -36,3 +39,12 @@ async def delete_text(text_id: int, db: Session = Depends(get_db)):
     if text is None:
         raise HTTPException(status_code=404, detail=f"Text with id {text_id} not found")
     return {"message": f"Text with id {text_id} deleted successfully"}
+
+@app.post("/sentiment")
+async def analyze_sentiment(text: schemas.TextCreate):
+    result = sentiment_classifier(text.content)
+    return {
+        "text": text.content,
+        "sentiment": result[0]["label"],
+        "confidence": round(result[0]["score"] * 100, 2)
+    }

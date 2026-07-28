@@ -69,3 +69,20 @@ phase_3_fastapi/
 └── README.md
 
 but it has a flaw that my data is lost as soon we restart the server because the data was stored in the ram, if user submits text and server crashes the data is gone forever
+
+## phase 4
+
+## Database
+- PostgreSQL for persistent storage
+- SQLAlchemy ORM for database operations
+- Auto-creates tables on startup
+
+## Project Structure
+text-logger-api/
+├── text_logger.py  → API routes
+├── database.py     → DB connection
+├── models.py       → Table definitions
+├── schemas.py      → Pydantic models
+├── crud.py         → DB operations
+├── requirements.txt
+└── README.md
