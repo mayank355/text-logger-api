@@ -67,3 +67,5 @@ phase_3_fastapi/
 ├── text_logger.py
 ├── requirements.txt
 └── README.md
+
+but it has a flaw that my data is lost as soon we restart the server because the data was stored in the ram, if user submits text and server crashes the data is gone forever
