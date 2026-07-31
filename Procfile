@@ -1,0 +1,1 @@
+web: uvicorn text_logger:app --host 0.0.0.0 --port $PORT
