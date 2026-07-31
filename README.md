@@ -120,3 +120,61 @@ Embeddings   → converting text to numbers
 LangChain    → connects everything
                document → chunks → embeddings
                → ChromaDB → search → AI → answer
+
+# Text Logger API
+
+An AI-powered REST API built with FastAPI, PostgreSQL, 
+and RAG (Retrieval Augmented Generation).
+
+## Summary
+This project started as a simple text logging REST API 
+and evolved into an AI-powered backend. It demonstrates 
+full stack backend development with database integration, 
+sentiment analysis, and a RAG system for document Q&A.
+
+## Features
+- Full CRUD operations with PostgreSQL persistence
+- Sentiment analysis using HuggingFace transformers
+- RAG system — upload documents and ask questions
+- Auto-generated API documentation via Swagger UI
+- Proper project structure with separation of concerns
+
+## Tech Stack
+- Python, FastAPI, Uvicorn
+- PostgreSQL, SQLAlchemy, Pydantic
+- HuggingFace Transformers
+- ChromaDB (vector database)
+- Groq API (Llama 3 LLM)
+
+## Project Structure
+text-logger-api/
+├── text_logger.py  → API routes
+├── database.py     → DB connection
+├── models.py       → Table definitions
+├── schemas.py      → Pydantic models
+├── crud.py         → DB operations
+├── rag/
+│   ├── rag_engine.py  → RAG logic
+│   └── rag_routes.py  → RAG routes
+├── requirements.txt
+└── README.md
+
+## API Routes
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | / | Health check |
+| POST | /texts | Create text entry |
+| GET | /texts | Get all entries |
+| GET | /texts/{id} | Get one entry |
+| DELETE | /texts/{id} | Delete entry |
+| POST | /sentiment | Analyze sentiment |
+| POST | /rag/documents | Add document to RAG |
+| POST | /rag/ask | Ask question about documents |
+
+## How to Run Locally
+1. Clone the repo
+2. Install dependencies: pip install -r requirements.txt
+3. Set up .env with your API keys
+4. Start server: uvicorn text_logger:app --reload
+5. Open docs: http://127.0.0.1:8000/docs
