@@ -86,3 +86,37 @@ text-logger-api/
 ├── crud.py         → DB operations
 ├── requirements.txt
 └── README.md
+
+## rag+chromadb
+
+RAG in plain English:
+
+Imagine you have a 100 page company report. You ask an AI "what was the revenue in Q3?"
+
+Without RAG:
+
+AI has no idea — it was never trained on your report
+AI either makes something up or says "I don't know"
+
+With RAG:
+
+Step 1 — Your system searches the report
+         finds the Q3 revenue section
+Step 2 — Passes that section to the AI as context
+Step 3 — AI reads that specific section
+         gives you a precise answer
+
+RAG = giving the AI the right pages to read before answering.
+
+The three components:
+
+ChromaDB     → stores your documents as embeddings
+               lets you search by meaning
+
+Embeddings   → converting text to numbers
+               "happy" and "joyful" are close together
+               because they mean similar things
+
+LangChain    → connects everything
+               document → chunks → embeddings
+               → ChromaDB → search → AI → answer

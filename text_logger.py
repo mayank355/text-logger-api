@@ -1,3 +1,4 @@
+from rag import rag_routes
 from fastapi import FastAPI, HTTPException, status, Depends
 from sqlalchemy.orm import Session
 from transformers import pipeline 
@@ -13,6 +14,8 @@ app = FastAPI(
     description="A REST API to store and retrieve text entries",
     version="2.0.0"
 )
+
+app.include_router(rag_routes.router, prefix="/rag", tags=["RAG"])
 
 @app.get("/")
 async def root():
