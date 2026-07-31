@@ -178,3 +178,7 @@ text-logger-api/
 3. Set up .env with your API keys
 4. Start server: uvicorn text_logger:app --reload
 5. Open docs: http://127.0.0.1:8000/docs
+
+## Live Demo
+API is live at: https://text-logger-api-production.up.railway.app
+Swagger UI: https://text-logger-api-production.up.railway.app/docs
